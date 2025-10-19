@@ -18,8 +18,8 @@ const AdminAddProject = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [editingIndex, setEditingIndex] = useState(null);
 
-  // Admin password (in production, this should be handled server-side)
-  const ADMIN_PASSWORD = 'admin123';
+  // Admin password from environment variables
+  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'default_password';
 
   useEffect(() => {
     // Load projects from localStorage
