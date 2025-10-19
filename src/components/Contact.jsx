@@ -63,43 +63,37 @@ const Contact = () => {
       icon: 'fas fa-envelope',
       label: 'Email',
       value: 'adawev@gmail.com',
-      link: 'mailto:adawev@gmail.com',
-      color: '#7fe3d9'
+      link: 'mailto:adawev@gmail.com'
     },
     {
       icon: 'fab fa-telegram',
       label: 'Telegram',
       value: '@adawev',
-      link: 'https://t.me/adawev',
-      color: '#0088cc'
+      link: 'https://t.me/adawev'
     },
     {
       icon: 'fab fa-github',
       label: 'GitHub',
       value: 'adawev',
-      link: 'https://github.com/adawev',
-      color: '#ffffff'
+      link: 'https://github.com/adawev'
     },
     {
       icon: 'fab fa-linkedin',
       label: 'LinkedIn',
       value: 'adawev',
-      link: 'https://linkedin.com/in/adawev',
-      color: '#0077b5'
+      link: 'https://linkedin.com/in/adawev'
     },
     {
       icon: 'fas fa-code',
       label: 'LeetCode',
       value: 'adawev',
-      link: 'https://leetcode.com/adawev',
-      color: '#ffa116'
+      link: 'https://leetcode.com/adawev'
     },
     {
       icon: 'fab fa-instagram',
       label: 'Instagram',
       value: '@adawev',
-      link: 'https://instagram.com/adawev',
-      color: '#e4405f'
+      link: 'https://instagram.com/adawev'
     }
   ];
 
@@ -132,7 +126,6 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="contact-card"
-                  style={{'--card-color': item.color}}
                 >
                   <div className="contact-icon">
                     <i className={item.icon}></i>

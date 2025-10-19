@@ -61,13 +61,13 @@
   font-size: 1.2rem;
   color: var(--muted);
   margin-bottom: 1rem;
-  animation: slideIn 0.6s ease-out;
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-20px);
   }
   to {
     opacity: 1;
@@ -77,16 +77,14 @@
 
 .wave {
   display: inline-block;
-  animation: wave-animation 2.5s ease-in-out infinite;
+  animation: wave-animation 1.5s ease-in-out infinite;
   font-size: 2rem;
 }
 
 @keyframes wave-animation {
   0%, 100% { transform: rotate(0deg); }
-  10%, 30% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
+  25% { transform: rotate(20deg); }
+  75% { transform: rotate(-10deg); }
 }
 
 .hero-name {
@@ -94,7 +92,7 @@
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 1rem;
-  animation: slideIn 0.6s ease-out 0.2s both;
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
 }
 
 .highlight {
@@ -112,7 +110,7 @@
   margin-bottom: 1.5rem;
   min-height: 60px;
   font-weight: 600;
-  animation: slideIn 0.6s ease-out 0.4s both;
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
 }
 
 .cursor {
@@ -131,14 +129,14 @@
   color: var(--muted);
   margin-bottom: 2rem;
   max-width: 600px;
-  animation: slideIn 0.6s ease-out 0.6s both;
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
 }
 
 .hero-stats {
   display: flex;
   gap: 3rem;
   margin-bottom: 2.5rem;
-  animation: slideIn 0.6s ease-out 0.8s both;
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
 }
 
 .stat {
@@ -163,7 +161,7 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  animation: slideIn 0.6s ease-out 1s both;
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
 }
 
 .btn-primary, .btn-secondary {
@@ -205,21 +203,23 @@
 }
 
 .btn-secondary:hover {
-  background: rgba(127, 227, 217, 0.1);
+  background: var(--accent);
+  color: var(--bg);
   transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(127, 227, 217, 0.4);
 }
 
 .hero-visual {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 1s ease-out 1.2s both;
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
@@ -245,7 +245,7 @@
 .avatar-ring {
   width: 100%;
   height: 100%;
-  animation: rotate 10s linear infinite;
+  animation: rotate 8s linear infinite;
   border-style: dashed;
   opacity: 0.3;
 }
@@ -253,7 +253,7 @@
 .avatar-ring-2 {
   width: 120%;
   height: 120%;
-  animation: rotate 15s linear infinite reverse;
+  animation: rotate 12s linear infinite reverse;
   border-style: dotted;
   opacity: 0.2;
 }
@@ -327,13 +327,13 @@
   color: var(--muted);
   font-size: 0.85rem;
   font-weight: 600;
-  animation: bounce 2s ease-in-out infinite;
+  animation: bounce 1.5s ease-in-out infinite;
   cursor: pointer;
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-10px); }
+  50% { transform: translateX(-50%) translateY(-8px); }
 }
 
 .scroll-down i {
