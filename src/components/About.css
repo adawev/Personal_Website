@@ -1,0 +1,141 @@
+.about-section {
+  padding: 100px 0;
+  background: transparent;
+  position: relative;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about-text {
+  animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-description {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.about-description strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 3rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.3s var(--ease);
+}
+
+.highlight-item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(127, 227, 217, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.highlight-item i {
+  font-size: 2rem;
+  color: var(--accent);
+}
+
+.highlight-item h4 {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.highlight-item p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tech-stack {
+  animation: slideIn 0.6s ease-out 0.3s both;
+}
+
+.tech-stack h3 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.tech-item {
+  padding: 20px;
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+}
+
+.tech-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--tech-color);
+  box-shadow: 0 0 20px rgba(127, 227, 217, 0.2);
+}
+
+.tech-item i {
+  font-size: 2.5rem;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.tech-item:hover i {
+  transform: scale(1.2);
+}
+
+.tech-item span {
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (max-width: 968px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .about-highlights {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,119 +1,169 @@
-import { useState, useEffect } from 'react'
-import './Projects.css'
+import { useState, useEffect } from 'react';
+import './Projects.css';
 
-function Projects() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [cardsPerView, setCardsPerView] = useState(2)
-  const [projects, setProjects] = useState([
-    {
-      title: 'RootCast',
-      description: 'A weather application that provides real-time weather information for any country and offers important tips for tourists.',
-      image: '/project-placeholder.jpg',
-      technologies: ['OpenWeatherAPI', 'Nginx', 'React', 'Java'],
-      github: 'https://github.com/adawev',
-      demo: '',
-      category: 'Web App'
-    }
-  ])
+const Projects = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardsPerView, setCardsPerView] = useState(2);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    const savedProjects = localStorage.getItem('portfolioProjects')
+    // Load projects from localStorage
+    const savedProjects = localStorage.getItem('portfolioProjects');
     if (savedProjects) {
-      setProjects(JSON.parse(savedProjects))
+      setProjects(JSON.parse(savedProjects));
+    } else {
+      // Initialize with default projects
+      const defaultProjects = [
+        {
+          title: 'RootCast',
+          description: 'A comprehensive weather application that provides real-time weather information for any country worldwide, along with essential travel tips and local insights for tourists to ensure a safe and enjoyable visit.',
+          image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&auto=format&fit=crop',
+          technologies: ['OpenWeatherAPI', 'Nginx', 'React', 'Java'],
+          github: 'https://github.com/adawev/rootcast',
+          demo: '#',
+          category: 'Travel & Weather'
+        },
+        {
+          title: 'EduDash',
+          description: 'A comprehensive educational platform for teachers and students to manage courses, assignments, and track academic progress in real-time.',
+          image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&auto=format&fit=crop',
+          technologies: ['React', 'Django', 'PostgreSQL', 'REST API'],
+          github: 'https://github.com/adawev/edudash',
+          demo: '#',
+          category: 'Web App'
+        },
+        {
+          title: 'Nout Store',
+          description: 'Modern e-commerce platform for electronics with advanced filtering, shopping cart, and secure payment integration.',
+          image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&auto=format&fit=crop',
+          technologies: ['React', 'Java Spring', 'PostgreSQL', 'Stripe'],
+          github: 'https://github.com/adawev/nout-store',
+          demo: '#',
+          category: 'E-Commerce'
+        },
+        {
+          title: 'Diyor Stroy',
+          description: 'Construction management system for tracking projects, materials inventory, and workforce scheduling with real-time updates.',
+          image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&auto=format&fit=crop',
+          technologies: ['React', 'Java Spring', 'PostgreSQL', 'WebSocket'],
+          github: 'https://github.com/adawev/diyor-stroy',
+          demo: '#',
+          category: 'Management'
+        }
+      ];
+      localStorage.setItem('portfolioProjects', JSON.stringify(defaultProjects));
+      setProjects(defaultProjects);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
-        setCardsPerView(1)
+        setCardsPerView(1);
       } else {
-        setCardsPerView(2)
+        setCardsPerView(2);
       }
-    }
+    };
 
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = projects.length - cardsPerView;
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + cardsPerView >= projects.length ? 0 : prevIndex + 1
-    )
-  }
+      prevIndex >= maxIndex ? 0 : prevIndex + 1
+    );
+  };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? Math.max(0, projects.length - cardsPerView) : prevIndex - 1
-    )
-  }
+      prevIndex === 0 ? maxIndex : prevIndex - 1
+    );
+  };
 
-  const visibleProjects = projects.slice(currentIndex, currentIndex + cardsPerView)
+  const goToSlide = (index) => {
+    setCurrentIndex(Math.min(index, maxIndex));
+  };
 
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <h2 className="section-title">My Projects</h2>
+        <div className="section-header">
+          <span className="section-label">Portfolio</span>
+          <h2 className="section-title">Featured Projects</h2>
+          <p className="section-description">
+            A showcase of my recent work and technical capabilities
+          </p>
+        </div>
+
         <div className="carousel-container">
-          <button onClick={prevSlide} className="carousel-btn prev" disabled={currentIndex === 0}>
+          <button className="carousel-btn carousel-btn-prev" onClick={prevSlide} aria-label="Previous project">
             <i className="fas fa-chevron-left"></i>
           </button>
 
-          <div className="projects-carousel">
-            {visibleProjects.map((project, index) => (
-              <div key={currentIndex + index} className="project-card">
-                <div className="project-image">
-                  <img src={project.image} alt={project.title} />
-                  <div className="project-overlay">
-                    <div className="project-links">
-                      {project.github && (
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link">
-                          <i className="fab fa-github"></i>
-                        </a>
-                      )}
-                      {project.demo && (
-                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-link">
-                          <i className="fas fa-external-link-alt"></i>
-                        </a>
-                      )}
+          <div className="carousel-wrapper">
+            <div className="carousel-track" style={{
+              transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`
+            }}>
+              {projects.map((project, index) => (
+                <div key={index} className="carousel-slide" style={{
+                  flex: `0 0 ${100 / cardsPerView}%`
+                }}>
+                  <div className="project-card">
+                    <div className="project-image-wrapper">
+                      <img src={project.image} alt={project.title} className="project-image" />
+                      <div className="project-overlay">
+                        <span className="project-category">{project.category}</span>
+                        <div className="project-links">
+                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link">
+                            <i className="fab fa-github"></i>
+                          </a>
+                          <a href={project.demo} className="project-link">
+                            <i className="fas fa-external-link-alt"></i>
+                          </a>
+                        </div>
+                      </div>
                     </div>
+
+                    <div className="project-content">
+                      <h3 className="project-title">{project.title}</h3>
+                      <p className="project-description">{project.description}</p>
+
+                      <div className="project-tech">
+                        {project.technologies.map((tech, idx) => (
+                          <span key={idx} className="tech-badge">{tech}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="project-corner"></div>
                   </div>
                 </div>
-                <div className="project-info">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="project-tech">
-                    {project.technologies.map((tech, i) => (
-                      <span key={i} className="tech-tag">{tech}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          <button
-            onClick={nextSlide}
-            className="carousel-btn next"
-            disabled={currentIndex + cardsPerView >= projects.length}
-          >
+          <button className="carousel-btn carousel-btn-next" onClick={nextSlide} aria-label="Next project">
             <i className="fas fa-chevron-right"></i>
           </button>
         </div>
 
-        <div className="carousel-dots">
-          {Array.from({ length: Math.ceil(projects.length / cardsPerView) }).map((_, index) => (
-            <span
+        <div className="carousel-indicators">
+          {projects.map((_, index) => (
+            <button
               key={index}
-              className={`dot ${Math.floor(currentIndex / cardsPerView) === index ? 'active' : ''}`}
-              onClick={() => setCurrentIndex(index * cardsPerView)}
-            ></span>
+              className={`indicator ${index === currentIndex ? 'active' : ''}`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to project ${index + 1}`}
+            />
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
