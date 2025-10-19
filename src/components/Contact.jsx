@@ -62,8 +62,8 @@ const Contact = () => {
     {
       icon: 'fas fa-envelope',
       label: 'Email',
-      value: 'adawev@gmail.com',
-      link: 'mailto:adawev@gmail.com'
+      value: 'adashevdiyor443',
+      link: 'mailto:adashevdiyor443@gmail.com'
     },
     {
       icon: 'fab fa-telegram',
@@ -74,26 +74,26 @@ const Contact = () => {
     {
       icon: 'fab fa-github',
       label: 'GitHub',
-      value: 'adawev',
+      value: '@adawev',
       link: 'https://github.com/adawev'
     },
     {
       icon: 'fab fa-linkedin',
       label: 'LinkedIn',
-      value: 'adawev',
+      value: '@adawev',
       link: 'https://linkedin.com/in/adawev'
     },
     {
       icon: 'fas fa-code',
       label: 'LeetCode',
-      value: 'adawev',
+      value: '@adawev',
       link: 'https://leetcode.com/adawev'
     },
     {
       icon: 'fab fa-instagram',
       label: 'Instagram',
-      value: '@adawev',
-      link: 'https://instagram.com/adawev'
+      value: '@adaweev',
+      link: 'https://instagram.com/adaweev'
     }
   ];
 

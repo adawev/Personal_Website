@@ -49,7 +49,7 @@ const Hero = () => {
               <span>Hello, I'm</span>
             </div>
             <h1 className="hero-name">
-              Diyorjon<br />
+              Diyor<br />
               <span className="highlight">Adashev</span>
             </h1>
             <div className="hero-role">
@@ -62,12 +62,12 @@ const Hero = () => {
             </p>
             <div className="hero-stats">
               <div className="stat">
-                <div className="stat-number">3+</div>
-                <div className="stat-label">Projects</div>
+                <div className="stat-number">5+</div>
+                <div className="stat-label">Working Projects</div>
               </div>
               <div className="stat">
-                <div className="stat-number">2+</div>
-                <div className="stat-label">Years Learning</div>
+                <div className="stat-number">1+</div>
+                <div className="stat-label">Years Experience</div>
               </div>
               <div className="stat">
                 <div className="stat-number">6+</div>
@@ -94,7 +94,7 @@ const Hero = () => {
               <div className="avatar-ring"></div>
               <div className="avatar-ring-2"></div>
               <img
-                src="https://ui-avatars.com/api/?name=Diyorjon+Adashev&size=300&background=7fe3d9&color=0b0b0c&bold=true&font-size=0.33"
+                src="/images/personalPhoto.jpg"
                 alt="Diyorjon Adashev"
                 className="avatar"
               />
