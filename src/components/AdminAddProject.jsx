@@ -18,8 +18,17 @@ const AdminAddProject = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [editingIndex, setEditingIndex] = useState(null);
 
-  // Admin password from environment variables
-  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'default_password';
+  // Simple hash function for password verification
+  const hashPassword = async (password) => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  };
+
+  // SHA-256 hash of the admin password
+  const ADMIN_PASSWORD_HASH = '5460034ef5205fbb2e66042e0ca574a1693fba23be359ddd55d0fd92d81cb063';
 
   useEffect(() => {
     // Load projects from localStorage
@@ -71,9 +80,10 @@ const AdminAddProject = () => {
     }
   }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
+    const inputHash = await hashPassword(password);
+    if (inputHash === ADMIN_PASSWORD_HASH) {
       setIsAuthenticated(true);
       setError('');
     } else {
