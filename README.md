@@ -6,7 +6,6 @@ A modern, responsive portfolio website showcasing my projects and skills.
 
 - React 19.1.1
 - Vite 7.1.7
-- React Router DOM 7.9.4
 - EmailJS 4.4.1
 - Font Awesome 6.4.0
 
@@ -23,25 +22,33 @@ cd Personal_Website
 npm install
 ```
 
-3. **Configure environment variables**
-```bash
-# Copy the example env file
-cp .env.example .env
-
-# Edit .env and set your admin password
-# VITE_ADMIN_PASSWORD=your_secure_password_here
-```
-
-4. **Start the development server**
+3. **Start the development server**
 ```bash
 npm run dev
 ```
 
 The site will be available at `http://localhost:5173/`
 
-### Admin Panel
+## Updating Projects
 
-Access the admin panel at `/admin` to manage projects. The password is set in your `.env` file.
+Projects are stored in `public/projects.json`. To update your projects:
+
+1. Edit `public/projects.json`
+2. Commit and push to GitHub
+3. Netlify will auto-deploy your changes
+
+### Project JSON Format:
+```json
+{
+  "title": "Project Name",
+  "description": "Project description",
+  "image": "https://example.com/image.jpg",
+  "technologies": ["React", "Node.js"],
+  "github": "https://github.com/username/repo",
+  "demo": "https://demo-url.com",
+  "category": "Web App"
+}
+```
 
 ## Links
 

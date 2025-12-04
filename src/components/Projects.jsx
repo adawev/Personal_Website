@@ -5,55 +5,31 @@ const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(2);
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Load projects from localStorage
-    const savedProjects = localStorage.getItem('portfolioProjects');
-    if (savedProjects) {
-      setProjects(JSON.parse(savedProjects));
-    } else {
-      // Initialize with default projects
-      const defaultProjects = [
-        {
-          title: 'RootCast',
-          description: 'A comprehensive weather application that provides real-time weather information for any country worldwide, along with essential travel tips and local insights for tourists to ensure a safe and enjoyable visit.',
-          image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&auto=format&fit=crop',
-          technologies: ['OpenWeatherAPI', 'Nginx', 'React', 'Java'],
-          github: 'https://github.com/adawev/rootcast',
-          demo: '#',
-          category: 'Travel & Weather'
-        },
-        {
-          title: 'EduDash',
-          description: 'A comprehensive educational platform for teachers and students to manage courses, assignments, and track academic progress in real-time.',
-          image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&auto=format&fit=crop',
-          technologies: ['React', 'Django', 'PostgreSQL', 'REST API'],
-          github: 'https://github.com/adawev/edudash',
-          demo: '#',
-          category: 'Web App'
-        },
-        {
-          title: 'Nout Store',
-          description: 'Modern e-commerce platform for electronics with advanced filtering, shopping cart, and secure payment integration.',
-          image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&auto=format&fit=crop',
-          technologies: ['React', 'Java Spring', 'PostgreSQL', 'Stripe'],
-          github: 'https://github.com/adawev/nout-store',
-          demo: '#',
-          category: 'E-Commerce'
-        },
-        {
-          title: 'Diyor Stroy',
-          description: 'Construction management system for tracking projects, materials inventory, and workforce scheduling with real-time updates.',
-          image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&auto=format&fit=crop',
-          technologies: ['React', 'Java Spring', 'PostgreSQL', 'WebSocket'],
-          github: 'https://github.com/adawev/diyor-stroy',
-          demo: '#',
-          category: 'Management'
+    // Load projects from JSON file
+    const loadProjects = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/projects.json');
+
+        if (!response.ok) {
+          throw new Error('Failed to load projects');
         }
-      ];
-      localStorage.setItem('portfolioProjects', JSON.stringify(defaultProjects));
-      setProjects(defaultProjects);
-    }
+
+        const data = await response.json();
+        setProjects(data);
+      } catch (err) {
+        console.error('Error loading projects:', err);
+        setError('Failed to load projects. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProjects();
   }, []);
 
   useEffect(() => {
@@ -87,6 +63,34 @@ const Projects = () => {
   const goToSlide = (index) => {
     setCurrentIndex(Math.min(index, maxIndex));
   };
+
+  if (loading) {
+    return (
+      <section id="projects" className="projects">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-label">Portfolio</span>
+            <h2 className="section-title">Featured Projects</h2>
+            <p className="section-description">Loading projects...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="projects" className="projects">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-label">Portfolio</span>
+            <h2 className="section-title">Featured Projects</h2>
+            <p className="section-description" style={{color: 'var(--error, #ff4444)'}}>{error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="projects" className="projects">
