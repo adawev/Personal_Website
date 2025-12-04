@@ -121,9 +121,15 @@ const Projects = () => {
                           <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link">
                             <i className="fab fa-github"></i>
                           </a>
-                          <a href={project.demo} className="project-link">
-                            <i className="fas fa-external-link-alt"></i>
-                          </a>
+                          {project.demo && project.demo !== '#' ? (
+                            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-link">
+                              <i className="fas fa-external-link-alt"></i>
+                            </a>
+                          ) : (
+                            <span className="project-link disabled" title="Demo not available">
+                              <i className="fas fa-external-link-alt"></i>
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>

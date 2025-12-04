@@ -232,6 +232,12 @@
   box-shadow: 0 6px 20px rgba(127, 227, 217, 0.4);
 }
 
+.project-link.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .project-content {
   padding: 2rem;
   position: relative;

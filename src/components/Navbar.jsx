@@ -5,9 +5,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
     setIsOpen(false);
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   return (
@@ -28,26 +32,26 @@ const Navbar = () => {
         </button>
 
         <div className={`nav-links ${isOpen ? 'active' : ''}`}>
-          <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}>
+          <button onClick={() => scrollToSection('home')} className="nav-link">
             <i className="fas fa-home"></i>
             <span>Home</span>
-          </a>
-          <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>
+          </button>
+          <button onClick={() => scrollToSection('about')} className="nav-link">
             <i className="fas fa-user"></i>
             <span>About</span>
-          </a>
-          <a href="#services" onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}>
+          </button>
+          <button onClick={() => scrollToSection('services')} className="nav-link">
             <i className="fas fa-code"></i>
             <span>Services</span>
-          </a>
-          <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>
+          </button>
+          <button onClick={() => scrollToSection('projects')} className="nav-link">
             <i className="fas fa-folder-open"></i>
             <span>Projects</span>
-          </a>
-          <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>
+          </button>
+          <button onClick={() => scrollToSection('contact')} className="nav-link">
             <i className="fas fa-envelope"></i>
             <span>Contact</span>
-          </a>
+          </button>
         </div>
       </div>
     </nav>

@@ -75,13 +75,17 @@ const Hero = () => {
               </div>
             </div>
             <div className="hero-cta">
-              <a href="#projects" className="btn-primary" onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              <button className="btn-primary" onClick={() => {
+                setTimeout(() => {
+                  const element = document.getElementById('projects');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }, 100);
               }}>
                 <span>View My Work</span>
                 <i className="fas fa-arrow-right"></i>
-              </a>
+              </button>
               <a href="https://github.com/adawev" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                 <i className="fab fa-github"></i>
                 <span>GitHub</span>
