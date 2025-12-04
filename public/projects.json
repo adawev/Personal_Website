@@ -4,8 +4,8 @@
     "description": "A comprehensive weather application that provides real-time weather information for any country worldwide, along with essential travel tips and local insights for tourists to ensure a safe and enjoyable visit.",
     "image": "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&auto=format&fit=crop",
     "technologies": ["OpenWeatherAPI", "Nginx", "React", "Java"],
-    "github": "https://github.com/adawev/rootcast",
-    "demo": "",
+    "github": "https://github.com/adawev/RootCast",
+    "demo": "https://rootcast.bigroot.uz",
     "category": "Travel & Weather"
   },
   {
@@ -13,8 +13,8 @@
     "description": "A comprehensive educational platform for teachers and students to manage courses, assignments, and track academic progress in real-time.",
     "image": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&auto=format&fit=crop",
     "technologies": ["React", "Django", "PostgreSQL", "REST API"],
-    "github": "https://github.com/adawev/edudash",
-    "demo": "",
+    "github": "",
+    "demo": "https://edudash.uz",
     "category": "Web App"
   },
   {
@@ -22,8 +22,8 @@
     "description": "Modern e-commerce platform for electronics with advanced filtering, shopping cart, and secure payment integration.",
     "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&auto=format&fit=crop",
     "technologies": ["React", "Java Spring", "PostgreSQL", "Stripe"],
-    "github": "https://github.com/adawev/nout-store",
-    "demo": "",
+    "github": "https://github.com/adawev/NoutStore",
+    "demo": "https://noutstore.bigroot.uz",
     "category": "E-Commerce"
   },
   {
@@ -31,8 +31,8 @@
     "description": "Construction management system for tracking projects, materials inventory, and workforce scheduling with real-time updates.",
     "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&auto=format&fit=crop",
     "technologies": ["React", "Java Spring", "PostgreSQL", "WebSocket"],
-    "github": "https://github.com/adawev/diyor-stroy",
-    "demo": "",
+    "github": "https://github.com/adawev/DiyorStroyWeb",
+    "demo": "https://diyorstroy.uz",
     "category": "Management"
   }
 ]
